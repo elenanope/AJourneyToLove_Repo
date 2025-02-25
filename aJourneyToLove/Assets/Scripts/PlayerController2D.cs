@@ -23,7 +23,6 @@ public class PlayerController2D : MonoBehaviour
 
     private void Update()
     {
-        Attack();
         //if(GameManager.Instance.currentGameState!=GameManager.GameState.gameStarted) speed = 0; gameObject.SetActive(false);
     }
 
@@ -55,16 +54,20 @@ public class PlayerController2D : MonoBehaviour
         }
             
     }
-
-    void Attack()
+    public void OnAttack(InputAction.CallbackContext context)
     {
-       
+       if(context.started)
+        {
+            playerAnim.SetTrigger("Attack");
+        }   
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            playerAnim.SetTrigger("Hit");
             //Respawn();
         }
         if(collision.gameObject.CompareTag("PickUp"))

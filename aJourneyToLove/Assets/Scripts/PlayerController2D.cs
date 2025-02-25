@@ -67,6 +67,11 @@ public class PlayerController2D : MonoBehaviour
         {
             //Respawn();
         }
+        if(collision.gameObject.CompareTag("PickUp"))
+        {
+            GameManager.Instance.memories += 1;
+            collision.gameObject.SetActive(false);
+        }
     }
 
 }
